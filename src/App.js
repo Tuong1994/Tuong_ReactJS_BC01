@@ -6,7 +6,9 @@ import DataBinding from './DataBinding/DataBinding';
 import HandleEvent from './HandleEvent/HandleEvent';
 import DemoState from './StateReact/DemoState';
 import BaiTapChonXe from './StateReact/BaiTapChonXe';
-
+import RenderWithMap from './RenderWithMap/RenderWithMap';
+import BaiTapRenderMap from './RenderWithMap/BaiTapRenderMap';
+import DemoProps from './Props/DemoProps';
 function App() {
   return (
     <div className="App">
@@ -14,7 +16,10 @@ function App() {
       {/* <DataBinding /> */}
       {/* <HandleEvent /> */}
       {/* <DemoState /> */}
-      <BaiTapChonXe />
+      {/* <BaiTapChonXe /> */}
+      {/* <RenderWithMap /> */}
+      {/* <BaiTapRenderMap /> */}
+      <DemoProps />
     </div>
   );
 }
