@@ -9,6 +9,7 @@ import BaiTapChonXe from './StateReact/BaiTapChonXe';
 import RenderWithMap from './RenderWithMap/RenderWithMap';
 import BaiTapRenderMap from './RenderWithMap/BaiTapRenderMap';
 import DemoProps from './Props/DemoProps';
+import DemoQLSP from './Props/DemoQLSP/DemoQLSP';
 function App() {
   return (
     <div className="App">
@@ -19,7 +20,8 @@ function App() {
       {/* <BaiTapChonXe /> */}
       {/* <RenderWithMap /> */}
       {/* <BaiTapRenderMap /> */}
-      <DemoProps />
+      {/* <DemoProps /> */}
+      <DemoQLSP />
     </div>
   );
 }
