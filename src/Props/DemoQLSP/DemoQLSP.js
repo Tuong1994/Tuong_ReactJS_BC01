@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GioHang from "./GioHang";
 import SPDemo from "./SPDemo";
 
 export default class DemoQLSP extends Component {
@@ -55,14 +56,56 @@ export default class DemoQLSP extends Component {
         rom: "64 GB",
         giaBan: 5700000,
         hinhAnh: "./img/vsphone.jpg"
-     }
+     },
      // dùng object lưu trữ thông tin điện thoại
+
+     gioHang: [
+       {maSP: 1, tenSP: 'Iphone', hinhAnh: './img/applephone.jpg', gia: 1000, soLuong: 1}
+     ]
+  }
+  
+   // Hàm xử lý làm thay đổi state sẽ được đặt tại component chứa state
+   themGioHang = (sanPham) => {
+    // Sau khi click thì tạo ra 1 sản phẩm giống object trong giỏ hàng
+    let spGH = {
+      maSP: sanPham.maSP,
+      tenSP: sanPham.tenSP,
+      gia: sanPham.giaBan,
+      soLuong: 1,
+      hinhAnh: sanPham.hinhAnh
+    }
+    let gioHangUpdate = [...this.state.gioHang];
+    // Xử lý kiểm trastate giỏ hàng có chứa dữ liệu sản phẩm đó khi click hay chưa => Nếu có thì tăng số lượng, không có thì thêm vào
+    let indexSPGH = gioHangUpdate.findIndex(sp => sp.maSP === sanPham.maSP);
+    if (indexSPGH !== -1) // Tìm vị trí index
+    {
+      gioHangUpdate[indexSPGH].soLuong += 1;
+    } else {
+      gioHangUpdate.push(spGH);
+    }
+
+    this.state.gioHang.push(spGH)
+    this.setState({
+      // gioHang: //...giỏ hàng mới
+      gioHang: gioHangUpdate
+    })
+  }
+
+  xoaGH = (maSP) => {
+    let gioHangUpdate = [...this.state.gioHang];
+    let indexDelGH = gioHangUpdate.findIndex(sp => sp.maSP === maSP);
+
+    gioHangUpdate.splice(indexDelGH, 1);
+
+    this.setState({
+      gioHang: gioHangUpdate
+    })
   }
 
   renderSanPham = () => { 
     return this.mangSanPham.map((sp, index) => {
       return <div key={index} className="col-4">
-          <SPDemo sanPham={sp} xemCT={this.Info}/>
+          <SPDemo sanPham={sp} xemCT={this.Info} themGioHang={this.themGioHang}/>
       </div>
         // <div key={index} className="col-4">
         //   <div className="card text-left">
@@ -101,6 +144,8 @@ export default class DemoQLSP extends Component {
     let {tenSP, hinhAnh, manHinh, heDieuHanh, cameraTruoc, cameraSau, ram, rom} = this.state.InfoSP;
     return (
       <div className="container">
+        <h1 className="text-left">Giỏ hàng</h1>
+        <GioHang gioHang = {this.state.gioHang} xoa={this.xoaGH}/>
         <h3 className="text-center display-4">Danh sách sản phẩm</h3>
         <div className="row mb-5">{this.renderSanPham()}</div>
 
