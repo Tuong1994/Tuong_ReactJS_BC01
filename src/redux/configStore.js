@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers ,createStore} from "redux";
+import { baiTapGameReducer } from "../DemoRedux/BTGameXucXac/BTGameXucXacReducer";
 import { gioHangReducer } from "./reducers/GioHangReducer";
 
 const stateDefault = {
@@ -16,6 +17,7 @@ const stateDefault = {
 const rootReducer = combineReducers({
   gioHangReducer: gioHangReducer,
   // state theo từng nghiệp vụ
+  baiTapGameReducer: baiTapGameReducer
 });
 
 export const store = createStore(rootReducer);
